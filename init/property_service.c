@@ -81,6 +81,7 @@ struct {
     { "hw.",              AID_SYSTEM,   0 },
     { "sys.",             AID_SYSTEM,   0 },
     { "service.",         AID_SYSTEM,   0 },
+    { "service.",         AID_RADIO,    0 },
     { "wlan.",            AID_SYSTEM,   0 },
     { "bluetooth.",       AID_BLUETOOTH,   0 },
     { "dhcp.",            AID_SYSTEM,   0 },
@@ -92,9 +93,11 @@ struct {
     { "service.adb.tcp.port", AID_SHELL,    0 },
     { "persist.sys.",     AID_SYSTEM,   0 },
     { "persist.service.", AID_SYSTEM,   0 },
+    { "persist.service.", AID_RADIO,    0 },
     { "persist.security.", AID_SYSTEM,   0 },
     { "persist.service.bdroid.", AID_BLUETOOTH,   0 },
     { "selinux."         , AID_SYSTEM,   0 },
+    { "net.pdp",          AID_RADIO,    AID_RADIO },
     { "service.bootanim.exit", AID_GRAPHICS, 0 },
 #ifdef PROPERTY_PERMS_APPEND
 PROPERTY_PERMS_APPEND
