@@ -49,7 +49,7 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += -DCORKSCREW_HAVE_ARCH
 endif
 
-LOCAL_SHARED_LIBRARIES += libdl libcutils libgccdemangle
+LOCAL_SHARED_LIBRARIES += libdl libcutils liblog libgccdemangle
 
 LOCAL_CFLAGS += -std=gnu99 -Werror
 LOCAL_MODULE := libcorkscrew
@@ -75,7 +75,7 @@ ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES += $(generic_src_files) $(x86_src_files)
 LOCAL_CFLAGS += -DCORKSCREW_HAVE_ARCH
-LOCAL_STATIC_LIBRARIES += libcutils
+LOCAL_STATIC_LIBRARIES += libcutils liblog
 LOCAL_LDLIBS += -ldl
 ifeq ($(HOST_OS),linux)
   LOCAL_SHARED_LIBRARIES += libgccdemangle # TODO: is this even needed on Linux?

@@ -95,15 +95,11 @@ void keychord_init()
 void handle_keychord()
 {
     struct service *svc;
-    char debuggable[PROP_VALUE_MAX];
     char adb_enabled[PROP_VALUE_MAX];
     int ret;
     __u16 id;
 
-    // only handle keychords if ro.debuggable is set or adb is enabled.
-    // the logic here is that bugreports should be enabled in userdebug or eng builds
-    // and on user builds for users that are developers.
-    property_get("ro.debuggable", debuggable);
+    // Only handle keychords if adb is enabled.
     property_get("init.svc.adbd", adb_enabled);
     ret = read(keychord_fd, &id, sizeof(id));
     if (ret != sizeof(id)) {
@@ -111,7 +107,7 @@ void handle_keychord()
         return;
     }
 
-    if (!strcmp(debuggable, "1") || !strcmp(adb_enabled, "running")) {
+    if (!strcmp(adb_enabled, "running")) {
         svc = service_find_by_keychord(id);
         if (svc) {
             INFO("starting service %s from keychord\n", svc->name);

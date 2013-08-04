@@ -451,6 +451,8 @@ static char **parse_platform_block_device(struct uevent *uevent)
     if (uevent->partition_name) {
         p = strdup(uevent->partition_name);
         sanitize(p);
+        if (strcmp(uevent->partition_name, p))
+            NOTICE("Linking partition '%s' as '%s'\n", uevent->partition_name, p);
         if (asprintf(&links[link_num], "%s/by-name/%s", link_path, p) > 0)
             link_num++;
         else
@@ -785,6 +787,7 @@ loading_close_out:
 file_free_out:
     free(file1);
     free(file2);
+    free(file3);
 data_free_out:
     free(data);
 loading_free_out:
